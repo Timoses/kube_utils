@@ -46,25 +46,9 @@ fi
 echo ">> To finalize installation add the following to your .${shell}rc:"
 echo ">>     source $KUBE_SOURCE"
 
-cat <<SOURCE > $KUBE_SOURCE
-if command -v kubectl 1> /dev/null ; then
 
-    source <(kubectl completion $shell)
-
-    alias k=kubectl
-    alias ks='kubectl -n kube-system'
-    alias ki='kubectl cluster-info'
-    alias kctx='kubectx'
-    alias kns='kubens'
-    alias kon='kubeon -g'
-    alias koff='kubeoff -g'
-    alias klogin='kubectl oidc-login'
-
-    # kubectl krew plugin manager
-    export PATH="\${KREW_ROOT:-\$HOME/.krew}/bin:\$PATH"
-fi
-
-alias kube='cat << EOF
+function print_aliases() {
+cat <<EOF
 Kubernetes commands:
    k        kubectl
    ks       k -n kube-system
@@ -83,8 +67,30 @@ Kubernetes plugins:
 
 Find more information on https://github.com/Timoses/kube_utils.
 EOF
-'
+}
 
+
+###############
+# Create kube. shell source file
+cat <<SOURCE > $KUBE_SOURCE
+if command -v kubectl 1> /dev/null ; then
+
+    source <(kubectl completion $shell)
+
+    alias k=kubectl
+    alias ks='kubectl -n kube-system'
+    alias ki='kubectl cluster-info'
+    alias kctx='kubectx'
+    alias kns='kubens'
+    alias kon='kubeon -g'
+    alias koff='kubeoff -g'
+    alias klogin='kubectl oidc-login'
+
+    # kubectl krew plugin manager
+    export PATH="\${KREW_ROOT:-\$HOME/.krew}/bin:\$PATH"
+fi
+
+alias kube='echo "$(print_aliases)"'
 SOURCE
 
 if [ "$shell" == "zsh" ] && command -v antibody 1> /dev/null ; then
