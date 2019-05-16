@@ -80,6 +80,8 @@ Kubernetes commands:
 
 Kubernetes plugins:
     k krew   kubectl plugin manager
+
+Find more information on https://github.com/Timoses/kube_utils.
 EOF
 '
 
