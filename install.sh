@@ -10,7 +10,7 @@ case $SHELL in
         shell="zsh"
         ;;
     *)
-        echo "Unable to determine used shell!"
+        echo "Your \$SHELL '$SHELL' is not supported currently!"
         exit 1
 esac
 
