@@ -5,6 +5,8 @@ Simple bash script that installs
 * kubectl
 * kubectl krew plugin manager
 
+and some additional [nice-to-have features](#features).
+
 ## Installation
 
 ```
