@@ -29,3 +29,6 @@ The script additionally sets up aliases for quicker interaction with `kubectl`.
 
 The alias `kube` will print a list of available aliases.
 
+## Contributing
+
+If you feel like anything is missing (e.g. support for other shells or some kubectl related feature) feel free to create a PR.
