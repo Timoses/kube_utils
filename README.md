@@ -10,7 +10,7 @@ and some additional [nice-to-have features](#features).
 ## Installation
 
 ```
-curl https://raw.githubusercontent.com/Timoses/kube_utils/master/install.sh | bash
+curl https://raw.githubusercontent.com/Timoses/kubectl_utils/master/install.sh | bash
 ```
 
 You can use the same command to update your installation.
