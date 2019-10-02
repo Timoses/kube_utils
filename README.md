@@ -21,7 +21,7 @@ You can use the same command to update your installation.
 
 * [kubectl auto completion](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete) {bash,zsh}
 * [kube-ps1](https://github.com/jonmosco/kube-ps1) {zsh w/ antibody}
-* [kubectx](https://github.com/ahmetb/kubectx) {zsh w/ antibody}
+* [kubectx](https://github.com/ahmetb/kubectx) (includes `kns`) {zsh w/ antibody}
 
 ### Aliases
 
