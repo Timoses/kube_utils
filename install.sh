@@ -2,6 +2,13 @@
 
 set -e
 
+case "$(uname -s)" in
+    Linux*)     os=linux;;
+    Darwin*)    os=darwin;;
+    *)          >&2 echo "Unknown OS: $(uname -s)" ; exit 1
+esac
+
+
 case $SHELL in
     */bash)
         shell="bash"
@@ -25,7 +32,7 @@ fi
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/
 kubectl_version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
 echo ">> Installing kubectl $kubectl_version"
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$kubectl_version/bin/linux/amd64/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$kubectl_version/bin/$os/amd64/kubectl
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 
