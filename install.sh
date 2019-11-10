@@ -31,10 +31,15 @@ fi
 # Install kubectl
 # https://kubernetes.io/docs/tasks/tools/install-kubectl/
 kubectl_version=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-echo ">> Installing kubectl $kubectl_version"
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$kubectl_version/bin/$os/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
+installed_version=$(command -v kubectl > /dev/null && kubectl version --client --short | sed -En 's/.*(v.*)/\1/p' || echo '')
+if [[ ! "$kubectl_version" == "$installed_version" ]] ; then
+    echo ">> Installing kubectl $kubectl_version"
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/$kubectl_version/bin/$os/amd64/kubectl
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl
+else
+    echo ">> kubectl already at latest version $kubectl_version"
+fi
 
 # kubectl krew plugin manager
 # https://github.com/kubernetes-sigs/krew#installation
