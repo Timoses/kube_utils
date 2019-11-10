@@ -115,8 +115,8 @@ RPROMPT='\$(kube_ps1) '\$RPROMPT
 
 # Kubectx
 DIR=\$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-ahmetb-SLASH-kubectx/completion
-if [ -f \$DIR/kubectx.zsh ] ; then ln -s \$DIR/kubectx.zsh \$DIR/_kubectx.zsh ; fi
-if [ -f \$DIR/kubens.zsh ] ; then ln -s \$DIR/kubens.zsh \$DIR/_kubens.zsh ; fi
+if [ -f \$DIR/kubectx.zsh ] ; then ln -f -s \$DIR/kubectx.zsh \$DIR/_kubectx.zsh ; fi
+if [ -f \$DIR/kubens.zsh ] ; then ln -f -s \$DIR/kubens.zsh \$DIR/_kubens.zsh ; fi
 SOURCE
 
 fi
