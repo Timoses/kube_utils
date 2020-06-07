@@ -48,10 +48,11 @@ echo ">> Installing kubectl krew $krew_version"
 if ! $(kubectl krew &> /dev/null) ; then
     (
       set -x; cd "$(mktemp -d)" &&
-          curl -fsSLO "https://storage.googleapis.com/krew/$krew_version/krew.{tar.gz,yaml}" &&
+          curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.{tar.gz,yaml}" &&
           tar zxvf krew.tar.gz &&
-          ./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" install \
-          --manifest=krew.yaml --archive=krew.tar.gz
+          KREW=./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" &&
+          "$KREW" install --manifest=krew.yaml --archive=krew.tar.gz &&
+          "$KREW" update
     ) > /dev/null
 fi
 
@@ -111,6 +112,9 @@ if [ "$shell" == "zsh" ] && command -v antibody 1> /dev/null ; then
     cat <<SOURCE >> $KUBE_SOURCE
 antibody bundle <<ANTI > /dev/null
 jonmosco/kube-ps1
+# kubectx might soon switch to go binaries
+# -> would have to adjust installation
+# (https://github.com/ahmetb/kubectx/tree/master#installation)
 ahmetb/kubectx kind:path
 ahmetb/kubectx kind:fpath path:completion
 ANTI
