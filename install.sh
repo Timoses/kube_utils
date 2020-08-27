@@ -100,6 +100,7 @@ if command -v kubectl 1> /dev/null ; then
     alias kon='kubeon -g'
     alias koff='kubeoff -g'
     alias klogin='kubectl oidc-login'
+    alias ktail='kubetail'
 
     # kubectl krew plugin manager
     export PATH="\${KREW_ROOT:-\$HOME/.krew}/bin:\$PATH"
@@ -112,6 +113,7 @@ if [ "$shell" == "zsh" ] && command -v antibody 1> /dev/null ; then
     cat <<SOURCE >> $KUBE_SOURCE
 antibody bundle <<ANTI > /dev/null
 jonmosco/kube-ps1
+johanhaleby/kubetail
 # kubectx might soon switch to go binaries
 # -> would have to adjust installation
 # (https://github.com/ahmetb/kubectx/tree/master#installation)
