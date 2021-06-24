@@ -122,7 +122,7 @@ ahmetb/kubectx kind:fpath path:completion
 ANTI
 
 # Kube-PS1
-RPROMPT='\$(kube_ps1) '\$RPROMPT
+[[ $RPROMPT == *"kube_ps1"* ]] || RPROMPT='$(kube_ps1) '$RPROMPT
 
 # Kubectx
 DIR=\$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-ahmetb-SLASH-kubectx/completion
